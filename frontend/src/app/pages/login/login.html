@@ -1,0 +1,31 @@
+<div class="login-container">
+  <h2>Iniciar sesión</h2>
+
+  <form (ngSubmit)="iniciarSesion()">
+
+    <div>
+      <label>Correo electrónico</label>
+      <input
+        type="email"
+        name="correo"
+        [(ngModel)]="correo"
+        required
+      />
+    </div>
+
+    <div>
+      <label>Contraseña</label>
+      <input
+        type="password"
+        name="clave"
+        [(ngModel)]="clave"
+        required
+      />
+    </div>
+
+    <button type="submit">Ingresar</button>
+
+    <p>{{ mensaje }}</p>
+
+  </form>
+</div>
