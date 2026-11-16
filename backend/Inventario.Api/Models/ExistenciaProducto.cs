@@ -1,8 +1,12 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Inventario.Api.Models;
 
 public class ExistenciaProducto
 {
+    [Key]
     public int IdExistencia { get; set; }
+    
     public int IdProducto { get; set; }
     public int IdProveedor { get; set; }
     public string? NumeroLorte { get; set; }
