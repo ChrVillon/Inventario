@@ -9,7 +9,7 @@ public class ExistenciaProducto
     
     public int IdProducto { get; set; }
     public int IdProveedor { get; set; }
-    public string? NumeroLorte { get; set; }
+    public string? NumeroLote { get; set; }
     public  decimal Precio { get; set; }
     public decimal Cantidad { get; set; }
 }

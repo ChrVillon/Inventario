@@ -1,0 +1,30 @@
+.productos-container {
+  padding: 30px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #333;
+  text-align: center;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+td:first-child {
+  font-weight: bold;
+  text-align: left;
+}
+
+small {
+  display: block;
+  margin-top: 4px;
+  color: #666;
+}

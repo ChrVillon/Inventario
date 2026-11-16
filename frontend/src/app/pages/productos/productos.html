@@ -1,1 +1,91 @@
-<p>productos works!</p>
+<button (click)="mostrarFormulario = !mostrarFormulario">
+  Registrar existencia
+</button>
+
+<div *ngIf="mostrarFormulario" class="formulario-container">
+
+  <h3>Nueva existencia</h3>
+
+  <form (ngSubmit)="registrarExistencia()">
+
+    <div>
+      <label>Producto:</label>
+
+      <select
+        name="producto"
+        [(ngModel)]="nuevaExistencia.idProducto"
+        required>
+
+        <option [ngValue]="0" disabled>Seleccionar producto</option>
+
+        <option
+          *ngFor="let producto of productos"
+          [ngValue]="producto.idProducto">
+
+          {{ producto.nombre }}
+
+        </option>
+
+      </select>
+    </div>
+
+    <div>
+      <label>Proveedor:</label>
+
+      <select
+        name="proveedor"
+        [(ngModel)]="nuevaExistencia.idProveedor"
+        required>
+
+        <option [ngValue]="0" disabled>Seleccionar proveedor</option>
+
+        <option
+          *ngFor="let proveedor of proveedores"
+          [ngValue]="proveedor.idProveedor">
+
+          {{ proveedor.nombre }}
+
+        </option>
+
+      </select>
+    </div>
+
+    <div>
+      <label>Número de lote:</label>
+      <input
+        type="text"
+        name="numeroLote"
+        [(ngModel)]="nuevaExistencia.numeroLote">
+    </div>
+
+    <div>
+      <label>Precio:</label>
+      <input
+        type="number"
+        name="precio"
+        [(ngModel)]="nuevaExistencia.precio"
+        min="0"
+        step="0.01"
+        required>
+    </div>
+
+    <div>
+      <label>Cantidad:</label>
+      <input
+        type="number"
+        name="cantidad"
+        [(ngModel)]="nuevaExistencia.cantidad"
+        min="0"
+        step="0.01"
+        required>
+    </div>
+
+    <button type="submit">Guardar</button>
+
+    <button type="button" (click)="mostrarFormulario = false">
+      Cancelar
+    </button>
+
+  </form>
+
+</div>
