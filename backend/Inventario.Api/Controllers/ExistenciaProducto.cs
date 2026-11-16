@@ -19,14 +19,14 @@ public class ExistenciaProductoController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> ObtenerExistencias()
     {
-        var existencias = await _contexto.ExistenciaProductos.ToListAsync();
+        var existencias = await _contexto.ExistenciasProductos.ToListAsync();
         return Ok(existencias);
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> ObtenerExistencia(int id)
     {
-        var existencia = await _contexto.ExistenciaProductos.FindAsync(id);
+        var existencia = await _contexto.ExistenciasProductos.FindAsync(id);
         if (existencia == null)
         {
             return NotFound(new { mensaje = "Existencia de producto no encontrada." });
@@ -38,7 +38,7 @@ public class ExistenciaProductoController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CrearExistencia(ExistenciaProducto existencia)
     {
-        _contexto.ExistenciaProductos.Add(existencia);
+        _contexto.ExistenciasProductos.Add(existencia);
         await _contexto.SaveChangesAsync();
         return CreatedAtAction(nameof(ObtenerExistencia), new { id = existencia.IdExistencia }, existencia);
     }
@@ -51,13 +51,13 @@ public class ExistenciaProductoController : ControllerBase
             return BadRequest(new { mensaje = "El ID de la URL no coincide con el ID de la existencia de producto." });
         }
 
-        var existenciaExistente = await _contexto.ExistenciaProductos.FindAsync(id);
+        var existenciaExistente = await _contexto.ExistenciasProductos.FindAsync(id);
 
         if (existenciaExistente == null)
         {
             return NotFound(new { mensaje = "Existencia de producto no encontrada." });
         }
-        
+
         existenciaExistente.Cantidad = existencia.Cantidad;
 
         await _contexto.SaveChangesAsync();
@@ -67,13 +67,13 @@ public class ExistenciaProductoController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> EliminarExistencia(int id)
     {
-        var existencia = await _contexto.ExistenciaProductos.FindAsync(id);
+        var existencia = await _contexto.ExistenciasProductos.FindAsync(id);
         if (existencia == null)
         {
             return NotFound(new { mensaje = "Existencia de producto no encontrada." });
         }
 
-        _contexto.ExistenciaProductos.Remove(existencia);
+        _contexto.ExistenciasProductos.Remove(existencia);
         await _contexto.SaveChangesAsync();
 
         return NoContent();

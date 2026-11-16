@@ -2,11 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Inventario.Api.Data;
 using Inventario.Api.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Inventario.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class ProveedorController : ControllerBase
 {
     private readonly InventarioContexto _contexto;

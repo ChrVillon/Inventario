@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Inventario.Api.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi;
 using System.Text;
 using Inventario.Api.Services;
 
@@ -15,7 +16,24 @@ var jwtAudience = builder.Configuration["Jwt:Audience"];
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "Ingresa tu token JWT."
+    });
+
+    options.AddSecurityRequirement(document =>
+        new OpenApiSecurityRequirement
+        {
+            [new OpenApiSecuritySchemeReference("Bearer", document)] = []
+        });
+});
 builder.Services.AddDbContext<InventarioContexto>(options =>
     options.UseMySQL(builder.Configuration.GetConnectionString("ConexionMySQL")
         ?? throw new InvalidOperationException("La cadena de conexión 'ConexionMySQL' no está configurada.")));
