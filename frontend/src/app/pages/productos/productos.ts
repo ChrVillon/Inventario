@@ -111,8 +111,9 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';  import { 
           this.cargarInventario();
         },
         error: (error) => {
-          console.error(error);
-          this.mensaje = 'No se pudo guardar la existencia.';
+          console.error('Error al actualizar/guardar:', error);
+          console.log('Respuesta del backend:', error.error);
+          this.mensaje = error.error?.mensaje || 'No se pudo guardar la existencia.';
         }
       });
     }
@@ -122,6 +123,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';  import { 
       this.idExistenciaEditando = existencia.idExistencia;
 
       this.nuevaExistencia = {
+        idExistencia: existencia.idExistencia,
         idProducto: existencia.idProducto,
         idProveedor: existencia.idProveedor,
         numeroLote: existencia.numeroLote,

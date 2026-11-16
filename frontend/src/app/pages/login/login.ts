@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Auth } from '../../services/auth';
 import { Router } from '@angular/router';
@@ -18,7 +18,8 @@ export class Login {
 
   constructor(
     private authService: Auth,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {}
 
   iniciarSesion(): void {
@@ -29,9 +30,11 @@ export class Login {
         this.mensaje = 'Inicio de sesión exitoso.';
         this.router.navigate(['/productos']);
       },
-        error: (error) => {
-          this.mensaje = error.error?.mensaje || 'Error al iniciar sesión.';
-        }
-      });
+      error: (error) => {
+        console.log('Error del login:', error);
+        this.mensaje = error.error?.mensaje || 'Credenciales inválidas.';
+        this.cdr.detectChanges();
+      }
+    });
   }
 }
