@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace Iventario.Api.Data;
+namespace Inventario.Api.Data;
 
 public class InventarioContexto : DbContext
 {

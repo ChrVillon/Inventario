@@ -1,4 +1,4 @@
-namespace Iventario.Api.Models;
+namespace Inventario.Api.Models;
 
 public class ExistenciaProducto
 {

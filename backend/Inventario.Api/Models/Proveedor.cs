@@ -1,6 +1,6 @@
-namespace Iventario.Api.Models;
+namespace Inventario.Api.Models;
 
-public class Proveedores
+public class Proveedor
 {
     public int IdProveedor { get; set; }
     public string Nombre { get; set; } = null!;

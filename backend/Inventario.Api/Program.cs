@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using Inventario.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -5,6 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<InventarioContexto>(options =>
+    options.UseMySQL(builder.Configuration.GetConnectionString("ConexionMySQL")
+        ?? throw new InvalidOperationException("La cadena de conexión 'ConexionMySQL' no está configurada.")));
 
 var app = builder.Build();
 
